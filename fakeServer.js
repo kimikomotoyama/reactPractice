@@ -40,3 +40,5 @@ class Server {
     }, 100);
   }
 }
+
+window.server = new Server();
