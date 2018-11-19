@@ -2,12 +2,9 @@
 
 // TODO : implement form, validation, etc
 
-server.register(null, (something) => {
-  console.log("Response: ", something);
+const badUser = {};
+server.register(badUser, (result, error) => {
+  if (error) {
+    console.error("Registration failed:", error);
+  }
 });
-
-// React
-ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('root')
-);

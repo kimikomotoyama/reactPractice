@@ -24,18 +24,19 @@ class Server {
     setTimeout(() => {
       try {
         if (!user.id) {
-          callback({error: "Missing id"});
+          callback(null, {error: "Missing id"});
         } else if (!user.name) {
-          callback({error: "Missing name"});
+          callback(null, {error: "Missing name"});
         } else if (!user.email) {
-          callback({error: "Missing e-mail"});
+          callback(null, {error: "Missing e-mail"});
+        } else {
+          callback({
+            // TODO
+          });
         }
-        callback({
-          // TODO
-        });
       } catch (e) {
         console.error("Boom", e);
-        callback({error: "Unexpected error"});
+        callback(null, {error: "Unexpected error"});
       }
     }, 100);
   }
