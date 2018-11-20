@@ -9,7 +9,7 @@ class Server {
       }
     }, 100);
   }
-  
+
   loadCountries(callback) {
     setTimeout(() => {
       callback([

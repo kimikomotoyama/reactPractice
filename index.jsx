@@ -1,6 +1,6 @@
-/* global server, ReactDOM */
+/* global server, React, ReactDOM */
 
-// TODO : implement form, validation, etc
+// TODO : implement components, validation, etc
 
 const badUser = {};
 server.register(badUser, (result, error) => {

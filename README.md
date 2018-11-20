@@ -24,6 +24,6 @@ Reference image for the form:
 
 ![Form Sample](https://cdn.glitch.com/dd24390c-870b-40a1-baae-0f151812e5d4%2FFormSample.png?1542007103804)
 
-Reference image for the user id validation:
+Reference image for the validation:
 
 ![User Id Validation](https://cdn.glitch.com/dd24390c-870b-40a1-baae-0f151812e5d4%2FFieldValidation.png?1542007105765)
