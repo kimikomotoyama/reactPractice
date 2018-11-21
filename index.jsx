@@ -44,8 +44,10 @@ class Label extends React.Component {
 class TextField extends React.Component {
   constructor(props) {
     super(props);
-    
-    this.custom = {
+  }
+
+  $("#forma").validator({
+    custom: {
       equals: function($el) {
         var matchValue = $el.data("equals") // foo
         if ($el.val() !== matchValue) {
@@ -53,8 +55,8 @@ class TextField extends React.Component {
         }
       }
     }
-  }
-
+  })
+  
   render() {
     return (  
       <input type={this.props.inputType} data-custom={this.custom} className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
