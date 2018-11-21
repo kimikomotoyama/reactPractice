@@ -55,7 +55,7 @@ class TextField extends React.Component {
     return (
       <div>
         <Label label={this.props.label}/>
-        <input onChange={(e)=>{this.props.handleInput(e, this.props.type)}}></input>
+        <input className={this.props.verified ? 'verified' : 'unverified'} onChange={(e)=>{this.props.handleInput(e, this.props.type)}}></input>
       </div>
     );
   }
@@ -151,9 +151,9 @@ class Form extends React.Component {
         <div>{this.state.id}</div>
         <div>{this.state.name}</div>
         <div>{this.state.email}</div>
-        <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id" states={}/>
-        <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name"/>
-        <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email"/>
+        <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id" verified={this.state.idVerified}/>
+        <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name" verified={this.state.nameVerified}/>
+        <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email" verified={this.state.emailVerified}/>
         <Dropdown name="countries" options={this.options}/>
         <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit}/>
       </div>
