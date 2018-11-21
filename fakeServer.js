@@ -21,6 +21,9 @@ class Server {
   }
 
   register(user, callback) {
+    // user.id = 1;
+    // user.name = "Kimiko";
+    // user.email = "kimiko@test.com";
     setTimeout(() => {
       try {
         if (!user.id) {
@@ -31,8 +34,9 @@ class Server {
           callback(null, {error: "Missing e-mail"});
         } else {
           callback({
-            // TODO
-          });
+            message: "Success"
+          }, null);
+          //TODO: go to a new page as a thank-you
         }
       } catch (e) {
         console.error("Boom", e);

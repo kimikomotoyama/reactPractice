@@ -6,6 +6,8 @@ const badUser = {};
 server.register(badUser, (result, error) => {
   if (error) {
     console.error("Registration failed:", error);
+  } else {
+    console.log(result.message);
   }
 });
 
@@ -73,6 +75,10 @@ class Form extends React.Component {
     });
   }
   
+  handleInput() {
+  
+  }
+  
   componentWillMount() {
     console.log("componentWillMount in form");
     this.getData();
@@ -81,7 +87,7 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-        <TextField label="User Id"/>
+        <TextField label="User Id" onChange=()=>{this.handleInput}/>
         <TextField label="Name"/>
         <TextField label="E-mail"/>
         <Dropdown name="countries" options={this.options}/>
