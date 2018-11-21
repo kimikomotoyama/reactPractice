@@ -20,8 +20,8 @@ class Button extends React.Component {
 }
 
 class Dropdown extends React.Component {
-  componentWillMount() {
-    console.log("componentWillMount in Dropdown");
+  componentDidUpdate() {
+    console.log("componentDidUpdate in Dropdown");
     console.log(this.props.options)
   }
   
@@ -61,20 +61,29 @@ class TextField extends React.Component {
 class Form extends React.Component {
   constructor(props) {
     super(props);
+    this.options;
     this.state = {
       countries: {}
     };
   }
   
-  componentDidMount() {
-    console.log("componentDidMount in form");
+  getData() {
+    console.log("getData");
     server.loadCountries((result) => {
       console.log(result);
+      this.options = result;
       this.setState({
         countries: result
       });
-      console.log(this.state.countries)
+      console.log(this.state.countries);
+      
+      console.log(this.options);
     });
+  }
+  
+  componentWillMount() {
+    console.log("componentWillMount in form");
+    this.getData();
   }
   
   render() {
@@ -83,7 +92,7 @@ class Form extends React.Component {
         <TextField label="User Id"/>
         <TextField label="Name"/>
         <TextField label="E-mail"/>
-        <Dropdown name="countries" options={this.state.countries}/>
+        <Dropdown name="countries" options={this.options}/>
         <Button name="Submit"/>
       </div>
     );
