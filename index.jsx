@@ -1,4 +1,4 @@
-/* global server, React, ReactDOM */
+/* global server, React, ReactDOM, Form */
 
 // TODO : implement components, validation, etc
 
@@ -8,3 +8,8 @@ server.register(badUser, (result, error) => {
     console.error("Registration failed:", error);
   }
 });
+
+ReactDOM.render(
+  <Form></Form>,
+  document.getElementById('root')
+);
