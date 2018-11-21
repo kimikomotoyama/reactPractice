@@ -69,9 +69,6 @@ class Form extends React.Component {
       id: null,
       name: null,
       email: null,
-      idVerified: false,
-      nameVerified: false,
-      emailVerified: false
     };
   }
   
@@ -85,20 +82,22 @@ class Form extends React.Component {
   
   verify(input, type) {
     if (type === 'id') {
-      server.isIdValid(input, function(response) {
+      server.isIdValid(input, (response) => {
         if (response) {
-          this.setState({idVerified: true});
+          return true;
         } else {
-          this.setState({idVerified: false});
+          return false;
         }
       });
     }
   }
   
-  handleInput(e, type) {  
+  handleInput(e, type) { 
+    let verified;
+    
     if (type === "id") {
-      this.verify(e.target.value, "id");
-      this.setState({id: e.target.value});
+      verified = this.verify(e.target.value, "id");
+      if(verified) this.setState({id: e.target.value});
     } else if (type === "name") {
       this.setState({name: e.target.value});
     } else if (type === "email") {
