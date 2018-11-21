@@ -129,12 +129,18 @@ class Form extends React.Component {
   
   handleSubmit() {
     console.log("handleSubmit");
-    const user = {};
+    const user = {
+      id: this.state.id,
+      name: this.state.name,
+      email: this.state.email
+    };
     server.register(user, (result, error) => {
       if (error) {
         console.error("Registration failed:", error);
       } else {
+        console.log(user);
         console.log(result.message);
+        alert("Thank you for registering!");
       }
     });
   }
@@ -146,7 +152,7 @@ class Form extends React.Component {
   
   render() {
     return (
-      <div>
+      <form>
         <div>{this.state.id}</div>
         <div>{this.state.name}</div>
         <div>{this.state.email}</div>
@@ -154,8 +160,8 @@ class Form extends React.Component {
         <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name" verified={this.state.nameVerified}/>
         <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email" verified={this.state.emailVerified}/>
         <Dropdown name="countries" options={this.options}/>
-        <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit}/>
-      </div>
+        <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
+      </form>
     );
   }
 }
