@@ -20,15 +20,9 @@ class Button extends React.Component {
 }
 
 class Dropdown extends React.Component {
-  componentDidMount() {
-    console.log("componentDidMount in Dropdown");
-    server.loadCountries((result) => {
-      console.log(result);
-      this.setState({
-        countries: result
-      });
-      console.log(this.state.countries)
-    });
+  componentWillMount() {
+    console.log("componentWillMount in Dropdown");
+    console.log(this.props.options)
   }
   
   render() {
