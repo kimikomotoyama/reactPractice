@@ -43,18 +43,13 @@ class Label extends React.Component {
 
 class TextField extends React.Component {
   render() {
-    return (      
-      <div className="input-group">
-        <input type={this.props.inputType} className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} 
-          onChange={(e)=>{this.props.handleInput(e, this.props.type)}} id={this.props.type} required />
+    return (  
+      <div>
+        <div className="input-group">
+          <input type={this.props.inputType} className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} 
+            id={this.props.type} required onChange={(e)=>{this.props.handleInput(e, this.props.type)}} id={this.props.type} />
+        </div>
         <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
-        
-         <div class="input-group">
-            <span class="input-group-addon">@</span>
-            <input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control" id="inputTwitter" placeholder="1000hz" required>
-          </div>
-          <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
-          <div class="help-block with-errors">Hey look, this one has feedback icons!</div>
       </div>
     );
   }
