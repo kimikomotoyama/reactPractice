@@ -1,5 +1,4 @@
 /* global server, window, React, ReactDOM, React-Bootstrap */
-
 // TODO : implement components, validation, etc
 
 class Button extends React.Component {
@@ -52,7 +51,6 @@ class TextField extends React.Component {
   }
 }
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 class Form extends React.Component {
   constructor(props) {
     super(props);
