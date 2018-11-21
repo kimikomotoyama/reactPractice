@@ -30,6 +30,8 @@ class Dropdown extends React.Component {
       <div>
         <select name={this.props.name}>
           <option value="Japan">Japan</option>
+          <option value="France">France</option>
+          <option value="USA">USA</option>
         </select>
       </div>
     );
@@ -61,9 +63,6 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.options;
-    this.state = {
-      countries: {}
-    };
   }
   
   getData() {
@@ -71,12 +70,6 @@ class Form extends React.Component {
     server.loadCountries((result) => {
       console.log(result);
       this.options = result;
-      this.setState({
-        countries: result
-      });
-      console.log(this.state.countries);
-      
-      console.log(this.options);
     });
   }
   
