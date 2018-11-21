@@ -15,7 +15,7 @@ class Button extends React.Component {
   render() {
     return (
       <div>
-        <button>{this.props.name}</button>
+        <button disabled={this.props.disabled}>{this.props.name}</button>
       </div>
     );
   }
@@ -111,13 +111,13 @@ class Form extends React.Component {
         if(verified) this.setState({email: value});
       });
     }
-    console.log(this.state);
-  }
-  
-  handleSubmit() {
     if (this.state.id && this.state.name && this.state.email) {
       this.setState({isSubmitDisabled: false});
     }
+  }
+  
+  handleSubmit() {
+    console.log("handleSubmit");
   }
   
   componentWillMount() {
@@ -135,7 +135,7 @@ class Form extends React.Component {
         <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name"/>
         <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email"/>
         <Dropdown name="countries" options={this.options}/>
-        <Button className={this.state.isSubmitDisabled ? 'disabled' : 'allowed'} name="Submit" handleSubmit={this.handleSubmit}/>
+        <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit}/>
       </div>
     );
   }
