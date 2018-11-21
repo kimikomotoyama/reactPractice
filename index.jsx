@@ -1,4 +1,4 @@
-/* global server, React, ReactDOM, Home */
+/* global server, window, React, ReactDOM */
 
 // TODO : implement components, validation, etc
 

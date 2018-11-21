@@ -1,4 +1,4 @@
-/* global server, React, ReactDOM */
+/* global server, window, React, ReactDOM */
 
 export default class Home extends React.Component {
   render() {
