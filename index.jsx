@@ -29,7 +29,6 @@ class Dropdown extends React.Component {
     return (
       <div>
         <select name={this.props.name}>
-          
           <option value="Japan">Japan</option>
         </select>
       </div>
