@@ -2,15 +2,6 @@
 
 // TODO : implement components, validation, etc
 
-const badUser = {};
-server.register(badUser, (result, error) => {
-  if (error) {
-    console.error("Registration failed:", error);
-  } else {
-    console.log(result.message);
-  }
-});
-
 class Button extends React.Component {
   render() {
     return (
@@ -138,6 +129,14 @@ class Form extends React.Component {
   
   handleSubmit() {
     console.log("handleSubmit");
+    const user = {};
+    server.register(user, (result, error) => {
+      if (error) {
+        console.error("Registration failed:", error);
+      } else {
+        console.log(result.message);
+      }
+    });
   }
   
   componentWillMount() {
