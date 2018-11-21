@@ -158,26 +158,26 @@ class Form extends React.Component {
         <div>{this.state.name}</div>
         <div>{this.state.email}</div>
         
-        <div className={`form-group has-feedback ${this.state.idVerified ? "" : "has-error has-danger"}`}>
+        <div className="form-group has-feedback" >
           <Label label="User Id" type="id"/>
           <TextField handleInput={this.handleInput.bind(this)} inputType="text" type="id" verified={this.state.idVerified}/>
-          <span className={`glyphicon form-control-feedback ${this.state.idVerified ? "" : "glyphicon-remove"}`} aria-hidden="true"></span>
+          <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
-        <div className="form-group has-feedback">
+        <div className="form-group has-feedback" >
           <Label label="Name" type="name"/>
           <TextField handleInput={this.handleInput.bind(this)} inputType="text" type="name" verified={this.state.nameVerified}/>
           <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
-        <div className="form-group has-feedback">
+        <div className="form-group has-feedback" >
           <Label label="E-mail" type="email"/>
           <TextField handleInput={this.handleInput.bind(this)} inputType="email" type="email" verified={this.state.emailVerified}/>
           <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
-        <div className="form-group has-feedback">
+        <div className="form-group has-feedback" >
           <Label label="Country" type="country"/>
           <Dropdown name="countries" options={this.options}/>
         </div>
-        <div className="form-group has-feedback">
+        <div className="form-group has-feedback" >
           <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
         </div>
       </form>
