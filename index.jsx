@@ -101,7 +101,7 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-        <TextField label="User Id" handleInput={this.handleInput} type="id"/>
+        <TextField label="User Id" handleInput={this.handleInput.apply(this)} type="id"/>
         <TextField label="Name" handleInput={this.handleInput} type="name"/>
         <TextField label="E-mail" handleInput={this.handleInput} type="email"/>
         <Dropdown name="countries" options={this.options}/>
