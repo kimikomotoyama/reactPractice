@@ -21,10 +21,10 @@ class Dropdown extends React.Component {
   render() {
     return (
       <div>
-        <select name={this.props.name}>
-          <option value="Japan">Japan</option>
-          <option value="France">France</option>
-          <option value="USA">USA</option>
+        <select className="form-control" name={this.props.name}>
+          <option id="JP" value="Japan">Japan</option>
+          <option id="FR" value="France">France</option>
+          <option id="USA" value="USA">USA</option>
         </select>
       </div>
     );
@@ -34,7 +34,7 @@ class Dropdown extends React.Component {
 class Label extends React.Component {
   render() {
     return (
-      <div>
+      <div for={this.props.type} className="control-label">
         {this.props.label}
       </div>
     );
@@ -46,7 +46,7 @@ class TextField extends React.Component {
     return (
       <div>
         <Label label={this.props.label}/>
-        <input className={`${this.props.verified ? 'verified' : 'unverified'} form-group`} onChange={(e)=>{this.props.handleInput(e, this.props.type)}}></input>
+        <input className={`${this.props.verified ? 'verified' : 'unverified'}`} onChange={(e)=>{this.props.handleInput(e, this.props.type)}}></input>
       </div>
     );
   }
@@ -157,11 +157,21 @@ class Form extends React.Component {
         <div>{this.state.name}</div>
         <div>{this.state.email}</div>
         
-        <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id" verified={this.state.idVerified}/>
-        <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name" verified={this.state.nameVerified}/>
-        <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email" verified={this.state.emailVerified}/>
-        <Dropdown name="countries" options={this.options}/>
-        <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
+        <div className="form-group" >
+          <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id" verified={this.state.idVerified}/>
+        </div>
+        <div className="form-group" >
+          <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name" verified={this.state.nameVerified}/>
+        </div>
+        <div className="form-group" >
+          <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email" verified={this.state.emailVerified}/>
+        </div>
+        <div className="form-group" >
+          <Dropdown name="countries" options={this.options}/>
+        </div>
+        <div className="form-group" >
+          <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
+        </div>
       </form>
     );
   }
