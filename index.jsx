@@ -1,4 +1,4 @@
-/* global server, React, ReactDOM, Form */
+/* global server, React, ReactDOM, Home */
 
 // TODO : implement components, validation, etc
 
@@ -10,6 +10,6 @@ server.register(badUser, (result, error) => {
 });
 
 ReactDOM.render(
-  <Form></Form>,
+  <Home></Home>,
   document.getElementById('root')
 );
