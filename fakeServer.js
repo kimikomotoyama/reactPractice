@@ -3,7 +3,7 @@ class Server {
   isIdValid(id, callback) {
     setTimeout(() => {
       if (id !== 'bob') {
-        callback(true);
+        callback(200);
       } else {
         callback(false);
       }
