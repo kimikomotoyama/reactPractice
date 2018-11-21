@@ -1,7 +1,6 @@
 /* global server, window, React, ReactDOM, FormGroup */
 // TODO : implement components, validation, etc
-// import { FormGroup } from 'react-bootstrap';
-window.FormGroup = 'react-bootstrap/lib/FormGroup';
+// import 'bootstrap/dist/css/bootstrap.css';
 
 class Button extends React.Component {
   render() {
@@ -47,7 +46,7 @@ class TextField extends React.Component {
     return (
       <div>
         <Label label={this.props.label}/>
-        <input className={this.props.verified ? 'verified' : 'unverified'} onChange={(e)=>{this.props.handleInput(e, this.props.type)}}></input>
+        <input className={`${this.props.verified ? 'verified' : 'unverified'} form-group`} onChange={(e)=>{this.props.handleInput(e, this.props.type)}}></input>
       </div>
     );
   }
@@ -154,16 +153,15 @@ class Form extends React.Component {
   render() {
     return (
       <form>
-        <FormGroup>
-          <div>{this.state.id}</div>
-          <div>{this.state.name}</div>
-          <div>{this.state.email}</div>
-          <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id" verified={this.state.idVerified}/>
-          <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name" verified={this.state.nameVerified}/>
-          <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email" verified={this.state.emailVerified}/>
-          <Dropdown name="countries" options={this.options}/>
-          <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
-        </FormGroup>
+        <div>{this.state.id}</div>
+        <div>{this.state.name}</div>
+        <div>{this.state.email}</div>
+        
+        <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id" verified={this.state.idVerified}/>
+        <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name" verified={this.state.nameVerified}/>
+        <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email" verified={this.state.emailVerified}/>
+        <Dropdown name="countries" options={this.options}/>
+        <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
       </form>
     );
   }
