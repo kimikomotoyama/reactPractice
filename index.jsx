@@ -156,9 +156,9 @@ class Form extends React.Component {
   render() {
     return (
       <form className="form" data-toggle="validator" role="form">
-        <FormGroup controlId="id" validationState="success">
+        <FormGroup controlId="id" validationState={`${this.state.idVerified ? "success" : "error"}`}>
           <ControlLabel>User Id</ControlLabel>
-          <FormControl type="text" />
+          <FormControl type="text" onChange={(e)=>this.handleInput(e, "id").bind(this)} />
           <FormControl.Feedback />
         </FormGroup>
         <div className="form-group has-feedback" >
@@ -171,11 +171,21 @@ class Form extends React.Component {
           <TextField handleInput={this.handleInput.bind(this)} inputType="text" type="name" verified={this.state.nameVerified}/>
           <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
+        <FormGroup controlId="name" validationState={`${this.state.nameVerified ? "success" : "error"}`}>
+          <ControlLabel>Name</ControlLabel>
+          <FormControl type="text" onChange={(e)=>this.handleInput(e, "name").bind(this)} />
+          <FormControl.Feedback />
+        </FormGroup>
         <div className="form-group has-feedback" >
           <Label label="E-mail" type="email"/>
           <TextField handleInput={this.handleInput.bind(this)} inputType="email" type="email" verified={this.state.emailVerified}/>
           <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
+        <FormGroup controlId="email" validationState={`${this.state.emailVerified ? "success" : "error"}`}>
+          <ControlLabel>E-mail</ControlLabel>
+          <FormControl type="email" onChange={(e)=>this.handleInput(e, "email").bind(this)} />
+          <FormControl.Feedback />
+        </FormGroup>
         <div className="form-group has-feedback" >
           <Label label="Country" type="country"/>
           <Dropdown name="countries" options={this.options}/>
