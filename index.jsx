@@ -1,4 +1,5 @@
-/* global server, window, React, ReactDOM, React-Bootstrap */
+/* global server, window, React, ReactDOM */
+const {FormGroup} = 'bootstrap/dist/css/bootstrap.min.css';
 // TODO : implement components, validation, etc
 
 class Button extends React.Component {
