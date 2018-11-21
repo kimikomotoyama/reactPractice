@@ -48,7 +48,7 @@ class TextField extends React.Component {
 
   render() {
     return (  
-      <input type={this.props.inputType} data-validate={this.props.verified} className={`form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
+      <input type={this.props.inputType} className={`form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
     );
   }
 }
