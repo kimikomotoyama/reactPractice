@@ -1,6 +1,8 @@
-/* global server, window, React, ReactDOM, FormGroup */
+/* global server, window, React, ReactDOM, ReactBootstrap */
 // TODO : implement components, validation, etc
-// import 'bootstrap/dist/css/bootstrap.css';
+const FormGroup = ReactBootstrap.FormGroup;
+const ControlLabel = ReactBootstrap.ControlLabel;
+const FormControl = ReactBootstrap.FormControl;
 
 class Button extends React.Component {
   render() {
@@ -154,6 +156,11 @@ class Form extends React.Component {
   render() {
     return (
       <form className="form" data-toggle="validator" role="form">
+        <FormGroup controlId="id" validationState="success">
+          <ControlLabel>User Id</ControlLabel>
+          <FormControl type="text" />
+          <FormControl.Feedback />
+        </FormGroup>
         <div className="form-group has-feedback" >
           <Label label="User Id" type="id"/>
           <TextField handleInput={this.handleInput.bind(this)} inputType="text" type="id" verified={this.state.idVerified}/>
