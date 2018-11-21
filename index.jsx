@@ -48,7 +48,7 @@ class TextField extends React.Component {
 
   render() {
     return (  
-      <input type={this.props.inputType} className={`${this.props.verified ? "is-valid" : "is-invalid"} form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
+      <input type={this.props.inputType} data-remote={`./fakeServer${isIdValid}`} className={`form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
     );
   }
 }
@@ -154,10 +154,6 @@ class Form extends React.Component {
   render() {
     return (
       <form className="form" data-toggle="validator" role="form">
-        <div>{this.state.id}</div>
-        <div>{this.state.name}</div>
-        <div>{this.state.email}</div>
-        
         <div className="form-group has-feedback" >
           <Label label="User Id" type="id"/>
           <TextField handleInput={this.handleInput.bind(this)} inputType="text" type="id" verified={this.state.idVerified}/>
