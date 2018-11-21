@@ -80,17 +80,18 @@ class Form extends React.Component {
     });
   }
   
-  handleInput(e, type) {
-    let value = e.target.value;
-    
+  handleInput(e, type) {  
+    console.log(e.target.value);
     if (type === "id") {
-      this.setState({id: value});
+      console.log("id");
+      this.setState({id: e.target.value});
+      console.log(this.state.id);
     } else if (type === "name") {
-      this.setState({name: value});
+      this.setState({name: e.target.value});
     } else if (type === "email") {
-      this.setState({email: value});
+      this.setState({email: e.target.value});
     }
-    console.log(this.state);
+    
   }
   
   componentWillMount() {
@@ -101,7 +102,7 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-        <TextField label="User Id" handleInput={this.handleInput.apply(this)} type="id"/>
+        <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id"/>
         <TextField label="Name" handleInput={this.handleInput} type="name"/>
         <TextField label="E-mail" handleInput={this.handleInput} type="email"/>
         <Dropdown name="countries" options={this.options}/>
