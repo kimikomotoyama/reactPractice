@@ -63,9 +63,17 @@ class Form extends React.Component {
         callback(response);
       });
     } else if (type === 'name') {
-      if (input.length > 2) callback(true);
+      if (input.length > 2) {
+        callback(true);
+      } else {
+        callback(false);
+      }
     } else if (type === 'email') {
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input)) callback(true);
+      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input)) {
+        callback(true);
+      } else {
+        callback(false);
+      }
     }
   }
   
@@ -149,7 +157,7 @@ class Form extends React.Component {
         </FormGroup>
         <FormGroup controlId="email" validationState={`${this.state.emailVerified}`}>
           <ControlLabel>E-mail</ControlLabel>
-          <FormControl type="email" onChange={(e)=>this.handleInput(e, "email")} />
+          <FormControl type="text" onChange={(e)=>this.handleInput(e, "email")} />
           <FormControl.Feedback />
         </FormGroup>
         <div className="form-group has-feedback" >
