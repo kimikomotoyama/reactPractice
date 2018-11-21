@@ -22,25 +22,12 @@ class Dropdown extends React.Component {
   
   render() {
     return (
-      <div>
-        <select className="form-control" name={this.props.name}>
+      <FormGroup controlId="formControlsSelect">
+        <FormControl componentClass="select" placeholder="select">
+          <option value="">select</option>
           <option id="JP" value="Japan">Japan</option>
           <option id="FR" value="France">France</option>
           <option id="USA" value="USA">USA</option>
-        </select>
-      </div>
-       <FormGroup controlId="formControlsSelect">
-        <ControlLabel>Select</ControlLabel>
-        <FormControl componentClass="select" placeholder="select">
-          <option value="select">select</option>
-          <option value="other">...</option>
-        </FormControl>
-      </FormGroup>
-      <FormGroup controlId="formControlsSelectMultiple">
-        <ControlLabel>Multiple select</ControlLabel>
-        <FormControl componentClass="select" multiple>
-          <option value="select">select (multiple)</option>
-          <option value="other">...</option>
         </FormControl>
       </FormGroup>
     );
@@ -116,8 +103,10 @@ class Form extends React.Component {
       });
     }
     if (this.state.idVerified === "success" && this.state.nameVerified  === "success" && this.state.emailVerified === "success" ) {
+      console.log("success everything");
       this.setState({isSubmitDisabled: false});
     } else {
+      console.log("not verified all yet");
       this.setState({isSubmitDisabled: true});
     }
   }
@@ -164,7 +153,7 @@ class Form extends React.Component {
           <FormControl.Feedback />
         </FormGroup>
         <div className="form-group has-feedback" >
-          <Label label="Country" type="country"/>
+          <ControlLabel>Country</ControlLabel>
           <Dropdown name="countries" options={this.options}/>
         </div>
         <div className="form-group has-feedback" >
