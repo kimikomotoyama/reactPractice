@@ -34,9 +34,9 @@ class Dropdown extends React.Component {
 class Label extends React.Component {
   render() {
     return (
-      <div for={this.props.type} className="control-label">
+      <label htmlFor={this.props.type}>
         {this.props.label}
-      </div>
+      </label>
     );
   }
 }
@@ -44,10 +44,7 @@ class Label extends React.Component {
 class TextField extends React.Component {
   render() {
     return (
-      <div>
-        <Label label={this.props.label}/>
-        <input className={`${this.props.verified ? 'verified' : 'unverified'}`} onChange={(e)=>{this.props.handleInput(e, this.props.type)}}></input>
-      </div>
+      <input type="text" className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} onChange={(e)=>{this.props.handleInput(e, this.props.type)}}></input>      
     );
   }
 }
@@ -158,13 +155,16 @@ class Form extends React.Component {
         <div>{this.state.email}</div>
         
         <div className="form-group" >
-          <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id" verified={this.state.idVerified}/>
+          <Label label="User Id" type="id"/>
+          <TextField handleInput={this.handleInput.bind(this)} type="id" verified={this.state.idVerified}/>
         </div>
         <div className="form-group" >
-          <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name" verified={this.state.nameVerified}/>
+          <Label label="Name" type="name"/>
+          <TextField handleInput={this.handleInput.bind(this)} type="name" verified={this.state.nameVerified}/>
         </div>
         <div className="form-group" >
-          <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email" verified={this.state.emailVerified}/>
+          <Label label="E-mail" type="email"/>
+          <TextField handleInput={this.handleInput.bind(this)} type="email" verified={this.state.emailVerified}/>
         </div>
         <div className="form-group" >
           <Dropdown name="countries" options={this.options}/>
