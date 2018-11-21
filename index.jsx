@@ -29,28 +29,20 @@ class Dropdown extends React.Component {
           <option id="USA" value="USA">USA</option>
         </select>
       </div>
-    );
-  }
-}
-
-class Label extends React.Component {
-  render() {
-    return (
-      <label className="control-label" htmlFor={this.props.type}>
-        {this.props.label}
-      </label>
-    );
-  }
-}
-
-class TextField extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (  
-      <input type={this.props.inputType} className={`form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
+       <FormGroup controlId="formControlsSelect">
+        <ControlLabel>Select</ControlLabel>
+        <FormControl componentClass="select" placeholder="select">
+          <option value="select">select</option>
+          <option value="other">...</option>
+        </FormControl>
+      </FormGroup>
+      <FormGroup controlId="formControlsSelectMultiple">
+        <ControlLabel>Multiple select</ControlLabel>
+        <FormControl componentClass="select" multiple>
+          <option value="select">select (multiple)</option>
+          <option value="other">...</option>
+        </FormControl>
+      </FormGroup>
     );
   }
 }
@@ -63,9 +55,9 @@ class Form extends React.Component {
       id: null,
       name: null,
       email: null,
-      idVerified: false,
-      nameVerified: false,
-      emailVerified: false,
+      idVerified: null,
+      nameVerified: null,
+      emailVerified: null,
       isSubmitDisabled: true
     };
   }
@@ -98,18 +90,18 @@ class Form extends React.Component {
       this.verify(value, "id", (verified) => {
         if(verified) {
           this.setState({id: value});
-          this.setState({idVerified: true});
+          this.setState({idVerified: "success"});
         } else {
-          this.setState({idVerified: false});
+          this.setState({idVerified: "error"});
         }
       });
     } else if (type === "name") {
       this.verify(value, "name", (verified) => {
         if(verified) {
           this.setState({name: value});
-          this.setState({nameVerified: true});
+          this.setState({nameVerified: "success"});
         } else {
-          this.setState({nameVerified: false});
+          this.setState({nameVerified: "error"});
         }
       });
       this.setState({name: value});
@@ -117,13 +109,13 @@ class Form extends React.Component {
       this.verify(value, "email", (verified) => {
         if(verified) {
           this.setState({email: value});
-          this.setState({emailVerified: true});
+          this.setState({emailVerified: "success"});
         } else {
-          this.setState({emailVerified: false});
+          this.setState({emailVerified: "error"});
         }
       });
     }
-    if (this.state.idVerified && this.state.nameVerified && this.state.emailVerified) {
+    if (this.state.idVerified === "success" && this.state.nameVerified  === "success" && this.state.emailVerified === "success" ) {
       this.setState({isSubmitDisabled: false});
     } else {
       this.setState({isSubmitDisabled: true});
@@ -156,34 +148,19 @@ class Form extends React.Component {
   render() {
     return (
       <form className="form" data-toggle="validator" role="form">
-        <FormGroup controlId="id" validationState={`${this.state.idVerified ? "success" : "error"}`}>
+        <FormGroup controlId="id" validationState={`${this.state.idVerified}`}>
           <ControlLabel>User Id</ControlLabel>
-          <FormControl type="text" onChange={(e)=>this.handleInput(e, "id").bind(this)} />
+          <FormControl type="text" onChange={(e)=>this.handleInput(e, "id")} />
           <FormControl.Feedback />
         </FormGroup>
-        <div className="form-group has-feedback" >
-          <Label label="User Id" type="id"/>
-          <TextField handleInput={this.handleInput.bind(this)} inputType="text" type="id" verified={this.state.idVerified}/>
-          <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
-        </div>
-        <div className="form-group has-feedback" >
-          <Label label="Name" type="name"/>
-          <TextField handleInput={this.handleInput.bind(this)} inputType="text" type="name" verified={this.state.nameVerified}/>
-          <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
-        </div>
-        <FormGroup controlId="name" validationState={`${this.state.nameVerified ? "success" : "error"}`}>
+        <FormGroup controlId="name" validationState={`${this.state.nameVerified}`}>
           <ControlLabel>Name</ControlLabel>
-          <FormControl type="text" onChange={(e)=>this.handleInput(e, "name").bind(this)} />
+          <FormControl type="text" onChange={(e)=>this.handleInput(e, "name")} />
           <FormControl.Feedback />
         </FormGroup>
-        <div className="form-group has-feedback" >
-          <Label label="E-mail" type="email"/>
-          <TextField handleInput={this.handleInput.bind(this)} inputType="email" type="email" verified={this.state.emailVerified}/>
-          <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
-        </div>
-        <FormGroup controlId="email" validationState={`${this.state.emailVerified ? "success" : "error"}`}>
+        <FormGroup controlId="email" validationState={`${this.state.emailVerified}`}>
           <ControlLabel>E-mail</ControlLabel>
-          <FormControl type="email" onChange={(e)=>this.handleInput(e, "email").bind(this)} />
+          <FormControl type="email" onChange={(e)=>this.handleInput(e, "email")} />
           <FormControl.Feedback />
         </FormGroup>
         <div className="form-group has-feedback" >
