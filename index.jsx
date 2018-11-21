@@ -20,17 +20,29 @@ class Button extends React.Component {
 }
 
 class Dropdown extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      options: this.props.options
+    }
+  }
+  
+  componentWillReceiveProps() {
+    console.log("component will receive props in Dropdown");
+    console.log(this.props.options);
+    this.setState({
+      options: this.props.options
+    });
+  }
+  
   render() {
-    console.log("component will mount in Dropdown");
+    console.log("component will render in Dropdown");
     console.log(this.props.options);
     return (
       <div>
         <select name={this.props.name}>
-          {this.props.options.map((option) => {
-            return (
-              <option value={option}>{option}</option>
-            )
-          })}
+          
+          <option value="Japan">Japan</option>
         </select>
       </div>
     );
