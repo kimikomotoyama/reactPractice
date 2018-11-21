@@ -53,6 +53,18 @@ class TextField extends React.Component {
 }
 
 class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  
+  componentWillMount() {
+    const badUser = {};
+    server.loadCountries((result) => {
+      console.log(result);
+    });
+  }
+  
   render() {
     return (
       <div>
