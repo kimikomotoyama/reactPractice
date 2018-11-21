@@ -94,19 +94,20 @@ class Form extends React.Component {
   
   handleInput(e, type) { 
     let verified;
+    let value = e.target.value;
     
     if (type === "id") {
-      this.verify(e.target.value, "id", (verified) => {
-        if(verified) this.setState({id: e.target.value});
+      this.verify(value, "id", (verified) => {
+        if(verified) this.setState({id: value});
       });
     } else if (type === "name") {
-      this.verify(e.target.value, "name", (verified) => {
-        if(verified) this.setState({name: e.target.value});
+      this.verify(value, "name", (verified) => {
+        if(verified) this.setState({name: value});
       });
-      this.setState({name: e.target.value});
+      this.setState({name: value});
     } else if (type === "email") {
-      this.verify(e.target.value, "email", (verified) => {
-        if(verified) this.setState({email: e.target.value});
+      this.verify(value, "email", (verified) => {
+        if(verified) this.setState({email: value});
       });
     }
     console.log(this.state);
