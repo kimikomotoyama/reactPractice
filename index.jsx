@@ -68,7 +68,10 @@ class Form extends React.Component {
     this.state = {
       id: null,
       name: null,
-      email: null
+      email: null,
+      idVerified: false,
+      nameVerified: false,
+      emailVerified: false
     };
   }
   
@@ -80,18 +83,27 @@ class Form extends React.Component {
     });
   }
   
+  verify(input, type) {
+    if (type === 'id') {
+      server.isIdValid(input, function(response) {
+        if (response) {
+          this.setState({idVerified: true});
+        } else {
+          this.setState({idVerified: false});
+        }
+      });
+    }
+  }
+  
   handleInput(e, type) {  
-    console.log(e.target.value);
     if (type === "id") {
-      console.log("id");
+      this.verify(e.target.value, "id");
       this.setState({id: e.target.value});
-      console.log(this.state.id);
     } else if (type === "name") {
       this.setState({name: e.target.value});
     } else if (type === "email") {
       this.setState({email: e.target.value});
     }
-    
   }
   
   componentWillMount() {
@@ -102,9 +114,12 @@ class Form extends React.Component {
   render() {
     return (
       <div>
+        <div>{this.state.id}</div>
+        <div>{this.state.name}</div>
+        <div>{this.state.email}</div>
         <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id"/>
-        <TextField label="Name" handleInput={this.handleInput} type="name"/>
-        <TextField label="E-mail" handleInput={this.handleInput} type="email"/>
+        <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name"/>
+        <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email"/>
         <Dropdown name="countries" options={this.options}/>
         <Button name="Submit"/>
       </div>
