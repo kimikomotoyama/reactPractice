@@ -1,7 +1,7 @@
 /* global server, window, React, ReactDOM, FormGroup */
 // TODO : implement components, validation, etc
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { FormGroup } from 'reactstrap';
+// import { FormGroup } from 'react-bootstrap';
+window.FormGroup = 'react-bootstrap/lib/FormGroup';
 
 class Button extends React.Component {
   render() {
