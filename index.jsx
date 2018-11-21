@@ -1,4 +1,5 @@
 /* global server, window, React, ReactDOM */
+import Home from 'window.Home';
 
 // TODO : implement components, validation, etc
 
