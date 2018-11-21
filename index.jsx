@@ -55,7 +55,7 @@ class TextField extends React.Component {
     return (
       <div>
         <Label label={this.props.label}/>
-        <input onChange={this.props.verifyInput}></input>
+        <input onChange={(e)=>{this.props.handleInput(e, this.props.type)}}></input>
       </div>
     );
   }
@@ -66,7 +66,9 @@ class Form extends React.Component {
     super(props);
     this.options;
     this.state = {
-      
+      id: null,
+      name: null,
+      email: null
     };
   }
   
@@ -78,8 +80,17 @@ class Form extends React.Component {
     });
   }
   
-  verifyInput(e) {
-    console.log(e.target.value);
+  handleInput(e, type) {
+    let value = e.target.value;
+    
+    if (type === "id") {
+      this.setState({id: value});
+    } else if (type === "name") {
+      this.setState({name: value});
+    } else if (type === "email") {
+      this.setState({email: value});
+    }
+    console.log(this.state);
   }
   
   componentWillMount() {
@@ -90,9 +101,9 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-        <TextField label="User Id" verifyInput={this.verifyInput}/>
-        <TextField label="Name" verifyInput={this.verifyInput}/>
-        <TextField label="E-mail" verifyInput={this.verifyInput}/>
+        <TextField label="User Id" handleInput={this.handleInput} type="id"/>
+        <TextField label="Name" handleInput={this.handleInput} type="name"/>
+        <TextField label="E-mail" handleInput={this.handleInput} type="email"/>
         <Dropdown name="countries" options={this.options}/>
         <Button name="Submit"/>
       </div>
