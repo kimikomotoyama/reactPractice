@@ -44,12 +44,7 @@ class Label extends React.Component {
 class TextField extends React.Component {
   render() {
     return (  
-      //   <input className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} 
-      //     onChange={(e)=>{this.props.handleInput(e, this.props.type)}}/>
-      <div class="input-group">
-        <span class="input-group-addon"></span>
-        <input type={this.props.inputType} className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
-      </div>
+      <input type={this.props.inputType} className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
     );
   }
 }
