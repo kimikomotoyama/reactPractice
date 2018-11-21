@@ -44,12 +44,11 @@ class Label extends React.Component {
 class TextField extends React.Component {
   render() {
     return (  
-      <div>
-        <div className="input-group">
-          <input type={this.props.inputType} className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} 
-            id={this.props.type} required onChange={(e)=>{this.props.handleInput(e, this.props.type)}} id={this.props.type} />
-        </div>
-        <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
+      //   <input className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} 
+      //     onChange={(e)=>{this.props.handleInput(e, this.props.type)}}/>
+      <div class="input-group">
+        <span class="input-group-addon"></span>
+        <input type={this.props.inputType} className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
       </div>
     );
   }
@@ -155,7 +154,7 @@ class Form extends React.Component {
   
   render() {
     return (
-      <form className="form">
+      <form className="form" data-toggle="validator" role="form">
         <div>{this.state.id}</div>
         <div>{this.state.name}</div>
         <div>{this.state.email}</div>
@@ -163,14 +162,17 @@ class Form extends React.Component {
         <div className="form-group has-feedback" >
           <Label label="User Id" type="id"/>
           <TextField handleInput={this.handleInput.bind(this)} inputType="text" type="id" verified={this.state.idVerified}/>
+          <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
         <div className="form-group has-feedback" >
           <Label label="Name" type="name"/>
           <TextField handleInput={this.handleInput.bind(this)} inputType="text" type="name" verified={this.state.nameVerified}/>
+          <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
         <div className="form-group has-feedback" >
           <Label label="E-mail" type="email"/>
           <TextField handleInput={this.handleInput.bind(this)} inputType="email" type="email" verified={this.state.emailVerified}/>
+          <span className="glyphicon form-control-feedback" aria-hidden="true"></span>
         </div>
         <div className="form-group has-feedback" >
           <Label label="Country" type="country"/>
