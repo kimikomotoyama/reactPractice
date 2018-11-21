@@ -1,4 +1,4 @@
-/* global server, window, React, ReactDOM */
+/* global server, window, React, ReactDOM, React-Bootstrap */
 
 // TODO : implement components, validation, etc
 
@@ -52,6 +52,7 @@ class TextField extends React.Component {
   }
 }
 
+import FormGroup from 'bootstrap';
 class Form extends React.Component {
   constructor(props) {
     super(props);
@@ -153,14 +154,16 @@ class Form extends React.Component {
   render() {
     return (
       <form>
-        <div>{this.state.id}</div>
-        <div>{this.state.name}</div>
-        <div>{this.state.email}</div>
-        <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id" verified={this.state.idVerified}/>
-        <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name" verified={this.state.nameVerified}/>
-        <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email" verified={this.state.emailVerified}/>
-        <Dropdown name="countries" options={this.options}/>
-        <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
+        <FormGroup>
+          <div>{this.state.id}</div>
+          <div>{this.state.name}</div>
+          <div>{this.state.email}</div>
+          <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id" verified={this.state.idVerified}/>
+          <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name" verified={this.state.nameVerified}/>
+          <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email" verified={this.state.emailVerified}/>
+          <Dropdown name="countries" options={this.options}/>
+          <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
+        </FormGroup>
       </form>
     );
   }
