@@ -80,20 +80,11 @@ class Form extends React.Component {
     });
   }
   
-  verify(input, type) {
+  verify(input, type, callback) {
     if (type === 'id') {
-      // server.isIdValid(input, (response) => {
-      //   if (response) {
-      //     console.log(response);
-      //     return true;
-      //   } else {
-      //     console.log(response);
-      //     return false;
-      //   }
-      // });
       server.isIdValid(input, (response) => {
-        return response;
-      })
+        callback(response);
+      });
     }
   }
   
@@ -101,15 +92,15 @@ class Form extends React.Component {
     let verified;
     
     if (type === "id") {
-      verified = this.verify(e.target.value, "id");
-      console.log(verified);
-      if(verified) this.setState({id: e.target.value});
+      this.verify(e.target.value, "id", function(verified) {
+        console.log(verified);
+        if(verified) this.setState({id: e.target.value});
+      });
     } else if (type === "name") {
       this.setState({name: e.target.value});
     } else if (type === "email") {
       this.setState({email: e.target.value});
     }
-    console.log(verified)
   }
   
   componentWillMount() {
