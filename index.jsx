@@ -46,20 +46,9 @@ class TextField extends React.Component {
     super(props);
   }
 
-  $("#forma").validator({
-    custom: {
-      equals: function($el) {
-        var matchValue = $el.data("equals") // foo
-        if ($el.val() !== matchValue) {
-          return "Hey, that's not valid! It's gotta be " + matchValue
-        }
-      }
-    }
-  })
-  
   render() {
     return (  
-      <input type={this.props.inputType} data-custom={this.custom} className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
+      <input type={this.props.inputType} className={`${this.props.verified ? 'verified' : 'unverified'} ${this.props.type === "id" && this.props.verified ? "is-valid" : "is-valid"} form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
     );
   }
 }
