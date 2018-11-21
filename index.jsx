@@ -20,32 +20,8 @@ class Button extends React.Component {
 }
 
 class Dropdown extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      options: this.props.options
-    }
-  }
-  
-  componentDidMount() {
-    console.log("componentDidMount in Dropdown");
-    this.setState({
-      options: this.props.options
-    });
-    console.log(this.state.options);
-  }
-  
-  componentWillReceiveProps() {
-    console.log("componentWillReceiveProps in Dropdown");
-    this.setState({
-      options: this.props.options
-    });
-    console.log(this.state.options);
-  }
   
   render() {
-    console.log("component will render in Dropdown");
-    console.log(this.state.options);
     return (
       <div>
         <select name={this.props.name}>
@@ -86,8 +62,8 @@ class Form extends React.Component {
     };
   }
   
-  componentWillMount() {
-    console.log("component will mount in form");
+  componentDidMount() {
+    console.log("component did mount in form");
     server.loadCountries((result) => {
       console.log(result);
       this.setState({
