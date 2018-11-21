@@ -15,8 +15,8 @@ class Button extends React.Component {
 }
 
 class Dropdown extends React.Component {
-  componentDidUpdate() {
-    console.log("componentDidUpdate in Dropdown");
+  componentWillUMount() {
+    console.log("componentWillUMount in Dropdown");
     console.log(this.props.options)
   }
   
@@ -25,6 +25,9 @@ class Dropdown extends React.Component {
       <FormGroup controlId="formControlsSelect">
         <FormControl componentClass="select" placeholder="select">
           <option value="">select</option>
+          {this.props.options.map((option) => {
+            <option id={option.id} value={option.label}>{option.label}</option>
+          })}
           <option id="JP" value="Japan">Japan</option>
           <option id="FR" value="France">France</option>
           <option id="USA" value="USA">USA</option>
@@ -144,30 +147,33 @@ class Form extends React.Component {
   
   render() {
     return (
-      <form className="form" data-toggle="validator" role="form">
-        <FormGroup controlId="id" validationState={`${this.state.idVerified}`}>
-          <ControlLabel>User Id</ControlLabel>
-          <FormControl type="text" onChange={(e)=>this.handleInput(e, "id")} />
-          <FormControl.Feedback />
-        </FormGroup>
-        <FormGroup controlId="name" validationState={`${this.state.nameVerified}`}>
-          <ControlLabel>Name</ControlLabel>
-          <FormControl type="text" onChange={(e)=>this.handleInput(e, "name")} />
-          <FormControl.Feedback />
-        </FormGroup>
-        <FormGroup controlId="email" validationState={`${this.state.emailVerified}`}>
-          <ControlLabel>E-mail</ControlLabel>
-          <FormControl type="text" onChange={(e)=>this.handleInput(e, "email")} />
-          <FormControl.Feedback />
-        </FormGroup>
-        <div className="form-group has-feedback" >
-          <ControlLabel>Country</ControlLabel>
-          <Dropdown name="countries" options={this.options}/>
-        </div>
-        <div className="form-group has-feedback" >
-          <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
-        </div>
-      </form>
+      <div>
+        <div>{this.state.idVerified}</div>
+        <form className="form" data-toggle="validator" role="form">
+          <FormGroup controlId="id" validationState={`${this.state.idVerified}`}>
+            <ControlLabel>User Id</ControlLabel>
+            <FormControl type="text" onChange={(e)=>this.handleInput(e, "id")} />
+            <FormControl.Feedback />
+          </FormGroup>
+          <FormGroup controlId="name" validationState={`${this.state.nameVerified}`}>
+            <ControlLabel>Name</ControlLabel>
+            <FormControl type="text" onChange={(e)=>this.handleInput(e, "name")} />
+            <FormControl.Feedback />
+          </FormGroup>
+          <FormGroup controlId="email" validationState={`${this.state.emailVerified}`}>
+            <ControlLabel>E-mail</ControlLabel>
+            <FormControl type="text" onChange={(e)=>this.handleInput(e, "email")} />
+            <FormControl.Feedback />
+          </FormGroup>
+          <div className="form-group has-feedback" >
+            <ControlLabel>Country</ControlLabel>
+            <Dropdown name="countries" options={this.options}/>
+          </div>
+          <div className="form-group has-feedback" >
+            <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
+          </div>
+        </form>
+      </div>
     );
   }
 }
