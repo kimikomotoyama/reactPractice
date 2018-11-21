@@ -44,7 +44,7 @@ class Label extends React.Component {
 class TextField extends React.Component {
   render() {
     return (  
-      <input type={this.props.inputType} data-remote={this.props.type === "id" ? "" : ""} className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
+      <input type={this.props.inputType} data-remote={this.props.type === "id" ?  : ""} className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} id={this.props.type} onChange={(e)=>{this.props.handleInput(e, this.props.type)}} required />
     );
   }
 }
