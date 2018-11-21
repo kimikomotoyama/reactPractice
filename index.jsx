@@ -15,7 +15,7 @@ class Button extends React.Component {
   render() {
     return (
       <div>
-        <button disabled={this.props.disabled}>{this.props.name}</button>
+        <button disabled={this.props.disabled} onClick={this.props.handleSubmit}>{this.props.name}</button>
       </div>
     );
   }
@@ -69,6 +69,9 @@ class Form extends React.Component {
       id: null,
       name: null,
       email: null,
+      idVerified: false,
+      nameVerified: false,
+      emailVerified: false,
       isSubmitDisabled: true
     };
   }
@@ -99,20 +102,37 @@ class Form extends React.Component {
     
     if (type === "id") {
       this.verify(value, "id", (verified) => {
-        if(verified) this.setState({id: value});
+        if(verified) {
+          this.setState({id: value});
+          this.setState({idVerified: true});
+        } else {
+          this.setState({idVerified: false});
+        }
       });
     } else if (type === "name") {
       this.verify(value, "name", (verified) => {
-        if(verified) this.setState({name: value});
+        if(verified) {
+          this.setState({name: value});
+          this.setState({nameVerified: true});
+        } else {
+          this.setState({nameVerified: false});
+        }
       });
       this.setState({name: value});
     } else if (type === "email") {
       this.verify(value, "email", (verified) => {
-        if(verified) this.setState({email: value});
+        if(verified) {
+          this.setState({email: value});
+          this.setState({emailVerified: true});
+        } else {
+          this.setState({emailVerified: false});
+        }
       });
     }
-    if (this.state.id && this.state.name && this.state.email) {
+    if (this.state.idVerified && this.state.nameVerified && this.state.emailVerified) {
       this.setState({isSubmitDisabled: false});
+    } else {
+      this.setState({isSubmitDisabled: true});
     }
   }
   
@@ -131,7 +151,7 @@ class Form extends React.Component {
         <div>{this.state.id}</div>
         <div>{this.state.name}</div>
         <div>{this.state.email}</div>
-        <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id"/>
+        <TextField label="User Id" handleInput={this.handleInput.bind(this)} type="id" states={}/>
         <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name"/>
         <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email"/>
         <Dropdown name="countries" options={this.options}/>
