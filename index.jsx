@@ -69,6 +69,7 @@ class Form extends React.Component {
       id: null,
       name: null,
       email: null,
+      isSubmitDisabled: true
     };
   }
   
@@ -113,6 +114,12 @@ class Form extends React.Component {
     console.log(this.state);
   }
   
+  handleSubmit() {
+    if (this.state.id && this.state.name && this.state.email) {
+      this.setState({isSubmitDisabled: false});
+    }
+  }
+  
   componentWillMount() {
     console.log("componentWillMount in form");
     this.getData();
@@ -128,7 +135,7 @@ class Form extends React.Component {
         <TextField label="Name" handleInput={this.handleInput.bind(this)} type="name"/>
         <TextField label="E-mail" handleInput={this.handleInput.bind(this)} type="email"/>
         <Dropdown name="countries" options={this.options}/>
-        <Button name="Submit"/>
+        <Button className={this.state.isSubmitDisabled ? 'disabled' : 'allowed'} name="Submit" handleSubmit={this.handleSubmit}/>
       </div>
     );
   }
