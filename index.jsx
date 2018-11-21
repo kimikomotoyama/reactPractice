@@ -1,5 +1,4 @@
 /* global server, window, React, ReactDOM */
-import Home from 'window.Home';
 
 // TODO : implement components, validation, etc
 
@@ -10,7 +9,22 @@ server.register(badUser, (result, error) => {
   }
 });
 
+class Form extends React.Component {
+
+}
+
+class Home extends React.Component {
+  render() {
+    return (
+      <div>
+        Home
+      </div>
+    );
+  }
+}
+
 ReactDOM.render(
   <Home></Home>,
   document.getElementById('root')
 );
+
