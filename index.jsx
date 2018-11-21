@@ -52,10 +52,11 @@ class Label extends React.Component {
 
 class TextField extends React.Component {
   render() {
+    this.props.verifyInput("text", "test me")
     return (
       <div>
         <Label label={this.props.label}/>
-        <input></input>
+        <input onChange={()=>{this.props.verifyInput("text", "test me")}}></input>
       </div>
     );
   }
@@ -75,8 +76,9 @@ class Form extends React.Component {
     });
   }
   
-  handleInput() {
-  
+  verifyInput(type, input) {
+    console.log(type);
+    console.log(input);
   }
   
   componentWillMount() {
@@ -87,7 +89,7 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-        <TextField label="User Id" onChange=()=>{this.handleInput}/>
+        <TextField label="User Id" verifyInput={this.verifyinput}/>
         <TextField label="Name"/>
         <TextField label="E-mail"/>
         <Dropdown name="countries" options={this.options}/>
