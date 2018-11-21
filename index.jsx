@@ -27,17 +27,25 @@ class Dropdown extends React.Component {
     }
   }
   
-  componentWillReceiveProps() {
-    console.log("component will receive props in Dropdown");
-    console.log(this.props.options);
+  componentDidMount() {
+    console.log("componentDidMount in Dropdown");
     this.setState({
       options: this.props.options
     });
+    console.log(this.state.options);
+  }
+  
+  componentWillReceiveProps() {
+    console.log("componentWillReceiveProps in Dropdown");
+    this.setState({
+      options: this.props.options
+    });
+    console.log(this.state.options);
   }
   
   render() {
     console.log("component will render in Dropdown");
-    console.log(this.props.options);
+    console.log(this.state.options);
     return (
       <div>
         <select name={this.props.name}>
@@ -85,6 +93,7 @@ class Form extends React.Component {
       this.setState({
         countries: result
       });
+      console.log(this.state.countries)
     });
   }
   
