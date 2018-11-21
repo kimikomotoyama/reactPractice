@@ -52,7 +52,7 @@ class TextField extends React.Component {
   }
 }
 
-import FormGroup from 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 class Form extends React.Component {
   constructor(props) {
     super(props);
