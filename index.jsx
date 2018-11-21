@@ -6,7 +6,7 @@ class Button extends React.Component {
   render() {
     return (
       <div>
-        <button disabled={this.props.disabled} onClick={this.props.handleSubmit}>{this.props.name}</button>
+        <button type="button" className="btn btn-primary" disabled={this.props.disabled} onClick={this.props.handleSubmit}>{this.props.name}</button>
       </div>
     );
   }
@@ -34,7 +34,7 @@ class Dropdown extends React.Component {
 class Label extends React.Component {
   render() {
     return (
-      <label htmlFor={this.props.type}>
+      <label className="control-label" htmlFor={this.props.type}>
         {this.props.label}
       </label>
     );
@@ -44,7 +44,13 @@ class Label extends React.Component {
 class TextField extends React.Component {
   render() {
     return (
-      <input type="text" className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} onChange={(e)=>{this.props.handleInput(e, this.props.type)}}></input>      
+      <input type="text" className={`${this.props.verified ? 'verified' : 'unverified'} form-control`} onChange={(e)=>{this.props.handleInput(e, this.props.type)}}></input>   
+      
+        <div class="input-group">
+          <span class="input-group-addon">@</span>
+          <input type="text" pattern="^[_A-z0-9]{1,}$" maxlength="15" class="form-control" id="inputTwitter" placeholder="1000hz" required>
+        </div>
+        <span class="glyphicon form-control-feedback" aria-hidden="true"></span>
     );
   }
 }
@@ -149,27 +155,28 @@ class Form extends React.Component {
   
   render() {
     return (
-      <form>
+      <form className="form">
         <div>{this.state.id}</div>
         <div>{this.state.name}</div>
         <div>{this.state.email}</div>
         
-        <div className="form-group" >
+        <div className="form-group has-feedback" >
           <Label label="User Id" type="id"/>
           <TextField handleInput={this.handleInput.bind(this)} type="id" verified={this.state.idVerified}/>
         </div>
-        <div className="form-group" >
+        <div className="form-group has-feedback" >
           <Label label="Name" type="name"/>
           <TextField handleInput={this.handleInput.bind(this)} type="name" verified={this.state.nameVerified}/>
         </div>
-        <div className="form-group" >
+        <div className="form-group has-feedback" >
           <Label label="E-mail" type="email"/>
           <TextField handleInput={this.handleInput.bind(this)} type="email" verified={this.state.emailVerified}/>
         </div>
-        <div className="form-group" >
+        <div className="form-group has-feedback" >
+          <Label label="Country" type="country"/>
           <Dropdown name="countries" options={this.options}/>
         </div>
-        <div className="form-group" >
+        <div className="form-group has-feedback" >
           <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
         </div>
       </form>
