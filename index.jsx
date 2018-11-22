@@ -15,15 +15,9 @@ class Button extends React.Component {
 }
 
 class Dropdown extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {}
-  }
-  
   componentDidMount() {
     console.log("componentDidMount in Dropdown");
     console.log(this.props.options)
-    this.setState({options: this.props.options})
   }
   
   render() {
@@ -31,9 +25,9 @@ class Dropdown extends React.Component {
       <FormGroup controlId="formControlsSelect">
         <FormControl componentClass="select" placeholder="select">
           <option value="">select</option>
-          <option id="JP" value="Japan">Japan</option>
-          <option id="FR" value="France">France</option>
-          <option id="USA" value="USA">USA</option>
+          {this.props.options && this.props.options.map((option) => {
+            <option id={option.id} value={option.label}></option>  
+          })}
         </FormControl>
       </FormGroup>
     );
