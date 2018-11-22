@@ -26,7 +26,7 @@ class Dropdown extends React.Component {
         <FormControl componentClass="select" placeholder="select">
           <option value="">select</option>
           {this.props.options && this.props.options.map((option) => {
-            <option id={option.id} value={option.label}></option>  
+            return (<option id={option.id} value={option.label} key={option.id}>{option.label}</option>)
           })}
         </FormControl>
       </FormGroup>
@@ -37,7 +37,6 @@ class Dropdown extends React.Component {
 class Form extends React.Component {
   constructor(props) {
     super(props);
-    this.options;
     this.state = {
       id: null,
       name: null,
@@ -45,15 +44,21 @@ class Form extends React.Component {
       idVerified: null,
       nameVerified: null,
       emailVerified: null,
-      isSubmitDisabled: true
+      isSubmitDisabled: true,
+      options: []
     };
+  }
+  
+  componentDidMount() {
+    console.log("componentDidMount in form");
+    this.getData();
   }
   
   getData() {
     console.log("getData");
     server.loadCountries((result) => {
       console.log(result);
-      this.options = result;
+      this.setState({options: result});
     });
   }
   
@@ -137,11 +142,6 @@ class Form extends React.Component {
     });
   }
   
-  componentWillMount() {
-    console.log("componentWillMount in form");
-    this.getData();
-  }
-  
   render() {
     return (
       <div>
@@ -164,7 +164,7 @@ class Form extends React.Component {
           </FormGroup>
           <div className="form-group has-feedback" >
             <ControlLabel>Country</ControlLabel>
-            <Dropdown name="countries" options={this.options}/>
+            <Dropdown name="countries" options={this.state.options}/>
           </div>
           <div className="form-group has-feedback" >
             <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
