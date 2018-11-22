@@ -152,7 +152,7 @@ class Form extends React.Component {
             <FormControl type="text" onChange={(e)=>this.handleInput(e, "id")} />
             <FormControl.Feedback />
           </FormGroup>
-          <FormGroup controlId="name" validationState={`${this.state.nameVerified}`}>
+          <FormGroup controlId="name" validationState={this.state.nameVerified}>
             <ControlLabel>Name</ControlLabel>
             <FormControl type="text" onChange={(e)=>this.handleInput(e, "name")} />
             <FormControl.Feedback />
