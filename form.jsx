@@ -47,7 +47,6 @@ class Form extends React.Component {
   }
   
   handleInput(e, type) { 
-    console.log("handleInput : " + type);
     let verified;
     let value = e.target.value;
     
@@ -99,7 +98,8 @@ class Form extends React.Component {
     const user = {
       id: this.state.id,
       name: this.state.name,
-      email: this.state.email
+      email: this.state.email,
+      country: this.state.country
     };
     server.register(user, (result, error) => {
       if (error) {
@@ -130,7 +130,7 @@ class Form extends React.Component {
           </FormGroup>
           <div className="form-group has-feedback" >
             <ControlLabel>Country</ControlLabel>
-            <Dropdown name="countries" options={this.state.options} country={this.state.country} handleInput={this.handleInput}/>
+            <Dropdown name="countries" options={this.state.options} country={this.state.country} handleInput={this.handleInput.bind(this)}/>
           </div>
           <div className="form-group has-feedback" >
             <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
