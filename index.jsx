@@ -1,38 +1,30 @@
-/* global server, window, React, ReactDOM, ReactBootstrap */
+/* global server, window, React, ReactDOM, ReactBootstrap Button Dropdown */
 // TODO : implement components, validation, etc
+const Button = Button;
+const Dropdown = Dropdown;
 const FormGroup = ReactBootstrap.FormGroup;
 const ControlLabel = ReactBootstrap.ControlLabel;
 const FormControl = ReactBootstrap.FormControl;
 
-class Button extends React.Component {
-  render() {
-    return (
-      <div>
-        <button type="button" className="btn btn-primary" disabled={this.props.disabled} onClick={this.props.handleSubmit}>{this.props.name}</button>
-      </div>
-    );
-  }
-}
-
-class Dropdown extends React.Component {
-  componentDidMount() {
-    console.log("componentDidMount in Dropdown");
-    console.log(this.props.options)
-  }
+// class Dropdown extends React.Component {
+//   componentDidMount() {
+//     console.log("componentDidMount in Dropdown");
+//     console.log(this.props.options)
+//   }
   
-  render() {
-    return (
-      <FormGroup controlId="formControlsSelect">
-        <FormControl componentClass="select" placeholder="select">
-          <option value="">select</option>
-          {this.props.options && this.props.options.map((option) => {
-            return (<option id={option.id} value={option.label} key={option.id}>{option.label}</option>)
-          })}
-        </FormControl>
-      </FormGroup>
-    );
-  }
-}
+//   render() {
+//     return (
+//       <FormGroup controlId="formControlsSelect">
+//         <FormControl componentClass="select" placeholder="select">
+//           <option value="">select</option>
+//           {this.props.options && this.props.options.map((option) => {
+//             return (<option id={option.id} value={option.label} key={option.id}>{option.label}</option>)
+//           })}
+//         </FormControl>
+//       </FormGroup>
+//     );
+//   }
+// }
 
 class Form extends React.Component {
   constructor(props) {
@@ -93,10 +85,10 @@ class Form extends React.Component {
       this.verify(value, "id", (verified) => {
         if(verified) {
           this.setState({id: value}, () => {
-            this.setState({idVerified: "success"}, () => this.checkVerifiedInput());
+            this.setState({idVerified: "success"}, () => this.allowDisableSubmitBtn());
           });
         } else {
-          this.setState({idVerified: "error"}, () => this.checkVerifiedInput());
+          this.setState({idVerified: "error"}, () => this.allowDisableSubmitBtn());
         }
       });
     } else if (type === "name") {
@@ -104,11 +96,11 @@ class Form extends React.Component {
         if(verified) {
           console.log("***********name verified");
           this.setState({name: value}, () => {
-            this.setState({nameVerified: "success"}, () => this.checkVerifiedInput());
+            this.setState({nameVerified: "success"}, () => this.allowDisableSubmitBtn());
           });
         } else {
           console.log("********name not verified");
-          this.setState({nameVerified: "error"}, () => this.checkVerifiedInput());
+          this.setState({nameVerified: "error"}, () => this.allowDisableSubmitBtn());
         }
       });
       this.setState({name: value});
@@ -116,16 +108,16 @@ class Form extends React.Component {
       this.verify(value, "email", (verified) => {
         if(verified) {
           this.setState({email: value}, () => {
-            this.setState({emailVerified: "success"}, () => this.checkVerifiedInput());
+            this.setState({emailVerified: "success"}, () => this.allowDisableSubmitBtn());
           });
         } else {
-          this.setState({emailVerified: "error"}, () => this.checkVerifiedInput());
+          this.setState({emailVerified: "error"}, () => this.allowDisableSubmitBtn());
         }
       });
     }
   }
   
-  checkVerifiedInput() {
+  allowDisableSubmitBtn() {
     console.log("nameVerified: " + this.state.nameVerified);
     console.log("emailVerified: " + this.state.emailVerified);
     if (this.state.idVerified === "success" && this.state.nameVerified  === "success" && this.state.emailVerified === "success" ) {
