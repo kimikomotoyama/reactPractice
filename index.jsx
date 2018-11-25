@@ -88,33 +88,43 @@ class Form extends React.Component {
     
     if (type === "id") {
       this.verify(value, "id", (verified) => {
+        console.log("id verified? " + verified);
         if(verified) {
-          this.setState({id: value});
-          this.setState({idVerified: "success"});
+          this.setState({id: value}, () => {
+            this.setState({idVerified: "success"}, this.checkVerifiedInput());
+          });
         } else {
-          this.setState({idVerified: "error"});
+          this.setState({idVerified: "error"}, this.checkVerifiedInput());
         }
       });
     } else if (type === "name") {
       this.verify(value, "name", (verified) => {
         if(verified) {
-          this.setState({name: value});
-          this.setState({nameVerified: "success"});
+          this.setState({name: value}, () => {
+            this.setState({nameVerified: "success"}, this.checkVerifiedInput());
+          });
         } else {
-          this.setState({nameVerified: "error"});
+          this.setState({nameVerified: "error"}, this.checkVerifiedInput());
         }
       });
       this.setState({name: value});
     } else if (type === "email") {
       this.verify(value, "email", (verified) => {
         if(verified) {
-          this.setState({email: value});
-          this.setState({emailVerified: "success"});
+          this.setState({email: value}, () => {
+            this.setState({emailVerified: "success"}, this.checkVerifiedInput());
+          });
         } else {
-          this.setState({emailVerified: "error"});
+          this.setState({emailVerified: "error"}, this.checkVerifiedInput());
         }
       });
     }
+  }
+  
+  checkVerifiedInput() {
+    console.log("idVerified: " + this.state.idVerified);
+    console.log("nameVerified: " + this.state.nameVerified);
+    console.log("emailVerified: " + this.state.emailVerified);
     if (this.state.idVerified === "success" && this.state.nameVerified  === "success" && this.state.emailVerified === "success" ) {
       console.log("success everything");
       this.setState({isSubmitDisabled: false});
@@ -145,7 +155,6 @@ class Form extends React.Component {
   render() {
     return (
       <div>
-        <div>{this.state.idVerified}</div>
         <form className="form" data-toggle="validator" role="form">
           <FormGroup controlId="id" validationState={`${this.state.idVerified}`}>
             <ControlLabel>User Id</ControlLabel>
