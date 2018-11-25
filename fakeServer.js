@@ -21,6 +21,7 @@ class Server {
   }
 
   register(user, callback) {
+    console.log(user);
     setTimeout(() => {
       try {
         if (!user.id) {
