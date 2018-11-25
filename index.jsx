@@ -69,8 +69,10 @@ class Form extends React.Component {
       });
     } else if (type === 'name') {
       if (input.length > 2) {
+        console.log("input length is larger than 2");
         callback(true);
       } else {
+        console.log("input length is less than 2");
         callback(false);
       }
     } else if (type === 'email') {
@@ -91,20 +93,22 @@ class Form extends React.Component {
         console.log("id verified? " + verified);
         if(verified) {
           this.setState({id: value}, () => {
-            this.setState({idVerified: "success"}, this.checkVerifiedInput());
+            this.setState({idVerified: "success"}, () => this.checkVerifiedInput());
           });
         } else {
-          this.setState({idVerified: "error"}, this.checkVerifiedInput());
+          this.setState({idVerified: "error"}, () => this.checkVerifiedInput());
         }
       });
     } else if (type === "name") {
       this.verify(value, "name", (verified) => {
         if(verified) {
+          console.log("***********name verified");
           this.setState({name: value}, () => {
-            this.setState({nameVerified: "success"}, this.checkVerifiedInput());
+            this.setState({nameVerified: "success"}, () => this.checkVerifiedInput());
           });
         } else {
-          this.setState({nameVerified: "error"}, this.checkVerifiedInput());
+          console.log("********name not verified");
+          this.setState({nameVerified: "error"}, () => this.checkVerifiedInput());
         }
       });
       this.setState({name: value});
@@ -112,10 +116,10 @@ class Form extends React.Component {
       this.verify(value, "email", (verified) => {
         if(verified) {
           this.setState({email: value}, () => {
-            this.setState({emailVerified: "success"}, this.checkVerifiedInput());
+            this.setState({emailVerified: "success"}, () => this.checkVerifiedInput());
           });
         } else {
-          this.setState({emailVerified: "error"}, this.checkVerifiedInput());
+          this.setState({emailVerified: "error"}, () => this.checkVerifiedInput());
         }
       });
     }
