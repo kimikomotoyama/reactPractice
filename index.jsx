@@ -68,6 +68,7 @@ class Form extends React.Component {
         callback(response);
       });
     } else if (type === 'name') {
+      console.log(input.length);
       if (input.length > 2) {
         console.log("input length is larger than 2");
         callback(true);
@@ -90,7 +91,6 @@ class Form extends React.Component {
     
     if (type === "id") {
       this.verify(value, "id", (verified) => {
-        console.log("id verified? " + verified);
         if(verified) {
           this.setState({id: value}, () => {
             this.setState({idVerified: "success"}, () => this.checkVerifiedInput());
@@ -126,7 +126,6 @@ class Form extends React.Component {
   }
   
   checkVerifiedInput() {
-    console.log("idVerified: " + this.state.idVerified);
     console.log("nameVerified: " + this.state.nameVerified);
     console.log("emailVerified: " + this.state.emailVerified);
     if (this.state.idVerified === "success" && this.state.nameVerified  === "success" && this.state.emailVerified === "success" ) {
@@ -160,7 +159,7 @@ class Form extends React.Component {
     return (
       <div>
         <form className="form" data-toggle="validator" role="form">
-          <FormGroup controlId="id" validationState={`${this.state.idVerified}`}>
+          <FormGroup controlId="id" validationState={this.state.idVerified}>
             <ControlLabel>User Id</ControlLabel>
             <FormControl type="text" onChange={(e)=>this.handleInput(e, "id")} />
             <FormControl.Feedback />
@@ -170,7 +169,7 @@ class Form extends React.Component {
             <FormControl type="text" onChange={(e)=>this.handleInput(e, "name")} />
             <FormControl.Feedback />
           </FormGroup>
-          <FormGroup controlId="email" validationState={`${this.state.emailVerified}`}>
+          <FormGroup controlId="email" validationState={this.state.emailVerified}>
             <ControlLabel>E-mail</ControlLabel>
             <FormControl type="text" onChange={(e)=>this.handleInput(e, "email")} />
             <FormControl.Feedback />
