@@ -70,42 +70,13 @@ class Form extends React.Component {
   handleInput(e, type) { 
     let verified;
     let value = e.target.value;
-    // this.verifyEachInput(type, value);
     
     if (type === "id") {
       this.verifyEachInput(type, value, "idVerified");
-      // this.verify(value, "id", (verified) => {
-      //   if(verified) {
-      //     this.setState({userInputs: {...this.state.userInputs, id: value}}, () => {
-      //       this.setState({idVerified: "success"}, () => this.allowDisableSubmitBtn());
-      //     });
-      //   } else {
-      //     this.setState({idVerified: "error"}, () => this.allowDisableSubmitBtn());
-      //   }
-      // });
     } else if (type === "name") {
       this.verifyEachInput(type, value, "nameVerified");
-      // this.verify(value, "name", (verified) => {
-      //   if(verified) {
-      //     this.setState({userInputs: {...this.state.userInputs, name: value}}, () => {
-      //       this.setState({nameVerified: "success"}, () => this.allowDisableSubmitBtn());
-      //     });
-      //   } else {
-      //     this.setState({nameVerified: "error"}, () => this.allowDisableSubmitBtn());
-      //   }
-      // });
-      // this.setState({name: value});
     } else if (type === "email") {
       this.verifyEachInput(type, value, "emailVerified");
-      // this.verify(value, "email", (verified) => {
-      //   if(verified) {
-      //     this.setState({userInputs: {...this.state.userInputs, email: value}}, () => {
-      //       this.setState({emailVerified: "success"}, () => this.allowDisableSubmitBtn());
-      //     });
-      //   } else {
-      //     this.setState({emailVerified: "error"}, () => this.allowDisableSubmitBtn());
-      //   }
-      // });
     } else if (type === "country") {
       this.setState({userInputs: {...this.state.userInputs, country: value}});
     }
@@ -125,6 +96,7 @@ class Form extends React.Component {
     };
     server.register(user, (result, error) => {
       if (error) {
+        alert("your submission failed to register");
       } else {
         alert("Thank you for registering!");
       }
