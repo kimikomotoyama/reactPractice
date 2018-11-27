@@ -1,4 +1,4 @@
-/* global server, window, React, ReactDOM */
+/* global server, window, React, ReactDOM prop-types */
 
 class Button extends React.Component {
   render() {
@@ -9,3 +9,8 @@ class Button extends React.Component {
     );
   }
 }
+
+Button.propTypes = {
+  handleSubmit: PropTypes.element.isRequired,
+  
+};
