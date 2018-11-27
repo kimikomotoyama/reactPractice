@@ -93,7 +93,7 @@ class Form extends React.Component {
         }
       });
     } else if (type === "country") {
-      this.setState({country: value});
+      this.setState({userInputs: {country: value}});
     }
   }
   
