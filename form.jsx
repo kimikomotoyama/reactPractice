@@ -109,17 +109,17 @@ class Form extends React.Component {
         <form className="form" data-toggle="validator" role="form">
           <FormGroup controlId="id" validationState={this.state.idVerified}>
             <Label name="User Id" />
-            <FormControl type="text" onChange={(e)=>this.handleInput(e, "id")} />
+            <FormControlComp type="text" onChange={(e)=>this.handleInput(e, "id")} />
             <FormControl.Feedback />
           </FormGroup>
           <FormGroup controlId="name" validationState={this.state.nameVerified}>
             <Label name="Name" />
-            <FormControl type="text" onChange={(e)=>this.handleInput(e, "name")} />
+            <FormControlComp type="text" onChange={(e)=>this.handleInput(e, "name")} />
             <FormControl.Feedback />
           </FormGroup>
           <FormGroup controlId="email" validationState={this.state.emailVerified}>
             <Label name="E-mail" />
-            <FormControl type="text" onChange={(e)=>this.handleInput(e, "email")} />
+            <FormControlComp type="text" onChange={(e)=>this.handleInput(e, "email")} />
             <FormControl.Feedback />
           </FormGroup>
           <div className="form-group has-feedback" >
