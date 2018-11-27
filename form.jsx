@@ -52,14 +52,24 @@ class Form extends React.Component {
   
   verifyEachInput(type, value, verifyKey) {
     this.verify(value, type, (verified) => {
+        const userInput = {
+          ...this.state.userInputs
+        };
+        userInput[type] = value;
+          
+        const verifyKey = {};
         if(verified) {
           console.log("verified");
-          this.setState({userInputs: {...this.state.userInputs, type: value}}, () => {
-            this.setState({verifyKey: "success"}, () => this.allowDisableSubmitBtn());
+          this.setState({userInputs: userInput}, () => {
+            console.log(this.state.userInputs);
+            
+            verifyKey[verifyKey] = "success";
+            this.setState(verifyKey, () => this.allowDisableSubmitBtn());
           });
         } else {
           console.log("not verified");
-          this.setState({verifyKey: "error"}, () => this.allowDisableSubmitBtn());
+          verifyKey[verifyKey] = "error";
+          this.setState(verifyKey, () => this.allowDisableSubmitBtn());
         }
       });
   }
