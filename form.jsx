@@ -4,6 +4,17 @@ class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      userInputs: {
+        id: null,
+        name: null,
+        email: null,
+        country: null,
+      },
+      userInputVerifications: {
+        idVerified: null,
+        nameVerified: null,
+        emailVerified: null,
+      },
       id: null,
       name: null,
       email: null,
@@ -22,7 +33,7 @@ class Form extends React.Component {
   
   getData() {
     server.loadCountries((result) => {
-      this.setState({options: result});
+      this.setState({options: result || []});
     });
   }
   
@@ -53,7 +64,7 @@ class Form extends React.Component {
     if (type === "id") {
       this.verify(value, "id", (verified) => {
         if(verified) {
-          this.setState({id: value}, () => {
+          this.setState({userInputs: {id: value}}, () => {
             this.setState({idVerified: "success"}, () => this.allowDisableSubmitBtn());
           });
         } else {
@@ -63,7 +74,7 @@ class Form extends React.Component {
     } else if (type === "name") {
       this.verify(value, "name", (verified) => {
         if(verified) {
-          this.setState({name: value}, () => {
+          this.setState({userInputs: {name: value}}, () => {
             this.setState({nameVerified: "success"}, () => this.allowDisableSubmitBtn());
           });
         } else {
@@ -74,7 +85,7 @@ class Form extends React.Component {
     } else if (type === "email") {
       this.verify(value, "email", (verified) => {
         if(verified) {
-          this.setState({email: value}, () => {
+          this.setState({userInputs: {email: value}}, () => {
             this.setState({emailVerified: "success"}, () => this.allowDisableSubmitBtn());
           });
         } else {
@@ -96,7 +107,7 @@ class Form extends React.Component {
   
   handleSubmit() {
     const user = {
-      id: this.state.id,
+      id: this.state.userInputs.id,
       name: this.state.name,
       email: this.state.email,
       country: this.state.country
