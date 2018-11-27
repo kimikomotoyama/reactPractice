@@ -15,13 +15,6 @@ class Form extends React.Component {
         nameVerified: null,
         emailVerified: null,
       },
-      id: null,
-      name: null,
-      email: null,
-      country: null,
-      idVerified: null,
-      nameVerified: null,
-      emailVerified: null,
       isSubmitDisabled: true,
       options: []
     };
@@ -57,24 +50,40 @@ class Form extends React.Component {
     }
   }
   
+  verifyEachInput(type, value, verifyKey) {
+    this.verify(value, type, (verified) => {
+        if(verified) {
+          console.log("verified");
+          this.setState({userInputs: {...this.state.userInputs, type: value}}, () => {
+            this.setState({verifyKey: "success"}, () => this.allowDisableSubmitBtn());
+          });
+        } else {
+          console.log("not verified");
+          this.setState({verifyKey: "error"}, () => this.allowDisableSubmitBtn());
+        }
+      });
+  }
+  
   handleInput(e, type) { 
     let verified;
     let value = e.target.value;
+    // this.verifyEachInput(type, value);
     
     if (type === "id") {
-      this.verify(value, "id", (verified) => {
-        if(verified) {
-          this.setState({userInputs: {id: value}}, () => {
-            this.setState({idVerified: "success"}, () => this.allowDisableSubmitBtn());
-          });
-        } else {
-          this.setState({idVerified: "error"}, () => this.allowDisableSubmitBtn());
-        }
-      });
+      this.verifyEachInput(type, value, "idVerified");
+      // this.verify(value, "id", (verified) => {
+      //   if(verified) {
+      //     this.setState({userInputs: {...this.state.userInputs, id: value}}, () => {
+      //       this.setState({idVerified: "success"}, () => this.allowDisableSubmitBtn());
+      //     });
+      //   } else {
+      //     this.setState({idVerified: "error"}, () => this.allowDisableSubmitBtn());
+      //   }
+      // });
     } else if (type === "name") {
       this.verify(value, "name", (verified) => {
         if(verified) {
-          this.setState({userInputs: {name: value}}, () => {
+          this.setState({userInputs: {...this.state.userInputs, name: value}}, () => {
             this.setState({nameVerified: "success"}, () => this.allowDisableSubmitBtn());
           });
         } else {
@@ -85,7 +94,7 @@ class Form extends React.Component {
     } else if (type === "email") {
       this.verify(value, "email", (verified) => {
         if(verified) {
-          this.setState({userInputs: {email: value}}, () => {
+          this.setState({userInputs: {...this.state.userInputs, email: value}}, () => {
             this.setState({emailVerified: "success"}, () => this.allowDisableSubmitBtn());
           });
         } else {
@@ -93,7 +102,7 @@ class Form extends React.Component {
         }
       });
     } else if (type === "country") {
-      this.setState({userInputs: {country: value}});
+      this.setState({userInputs: {...this.state.userInputs, country: value}});
     }
   }
   
