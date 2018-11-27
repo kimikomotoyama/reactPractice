@@ -52,25 +52,18 @@ class Form extends React.Component {
   
   verifyEachInput(type, value, verifyKey) {
     this.verify(value, type, (verified) => {
+        const verifyObj = {};
         const userInput = {
           ...this.state.userInputs
         };
         userInput[type] = value;
           
-        const verifyKey = {};
-        if(verified) {
-          console.log("verified");
-          this.setState({userInputs: userInput}, () => {
-            console.log(this.state.userInputs);
-            
-            verifyKey[verifyKey] = "success";
-            this.setState(verifyKey, () => this.allowDisableSubmitBtn());
-          });
-        } else {
-          console.log("not verified");
-          verifyKey[verifyKey] = "error";
-          this.setState(verifyKey, () => this.allowDisableSubmitBtn());
-        }
+        this.setState({userInputs: userInput}, () => {
+          console.log(this.state.userInputs);
+          verifyObj[verifyKey] = verified ? "success": "error";
+          console.log(verifyObj + ": " + verifyObj[verifyKey]);
+          this.setState(verifyObj, () => this.allowDisableSubmitBtn());
+        });
       });
   }
   
@@ -91,37 +84,36 @@ class Form extends React.Component {
       //   }
       // });
     } else if (type === "name") {
-      this.verify(value, "name", (verified) => {
-        if(verified) {
-          this.setState({userInputs: {...this.state.userInputs, name: value}}, () => {
-            this.setState({nameVerified: "success"}, () => this.allowDisableSubmitBtn());
-          });
-        } else {
-          this.setState({nameVerified: "error"}, () => this.allowDisableSubmitBtn());
-        }
-      });
-      this.setState({name: value});
+      this.verifyEachInput(type, value, "nameVerified");
+      // this.verify(value, "name", (verified) => {
+      //   if(verified) {
+      //     this.setState({userInputs: {...this.state.userInputs, name: value}}, () => {
+      //       this.setState({nameVerified: "success"}, () => this.allowDisableSubmitBtn());
+      //     });
+      //   } else {
+      //     this.setState({nameVerified: "error"}, () => this.allowDisableSubmitBtn());
+      //   }
+      // });
+      // this.setState({name: value});
     } else if (type === "email") {
-      this.verify(value, "email", (verified) => {
-        if(verified) {
-          this.setState({userInputs: {...this.state.userInputs, email: value}}, () => {
-            this.setState({emailVerified: "success"}, () => this.allowDisableSubmitBtn());
-          });
-        } else {
-          this.setState({emailVerified: "error"}, () => this.allowDisableSubmitBtn());
-        }
-      });
+      this.verifyEachInput(type, value, "emailVerified");
+      // this.verify(value, "email", (verified) => {
+      //   if(verified) {
+      //     this.setState({userInputs: {...this.state.userInputs, email: value}}, () => {
+      //       this.setState({emailVerified: "success"}, () => this.allowDisableSubmitBtn());
+      //     });
+      //   } else {
+      //     this.setState({emailVerified: "error"}, () => this.allowDisableSubmitBtn());
+      //   }
+      // });
     } else if (type === "country") {
       this.setState({userInputs: {...this.state.userInputs, country: value}});
     }
   }
   
   allowDisableSubmitBtn() {
-    if (this.state.idVerified === "success" && this.state.nameVerified  === "success" && this.state.emailVerified === "success" ) {
-      this.setState({isSubmitDisabled: false});
-    } else {
-      this.setState({isSubmitDisabled: true});
-    }
+    const verified = this.state.idVerified === "success" && this.state.nameVerified  === "success" && this.state.emailVerified === "success";
+    this.setState({isSubmitDisabled: verified ? false : true});
   }
   
   handleSubmit() {
