@@ -108,9 +108,9 @@ class Form extends React.Component {
   handleSubmit() {
     const user = {
       id: this.state.userInputs.id,
-      name: this.state.name,
-      email: this.state.email,
-      country: this.state.country
+      name: this.state.userInputs.name,
+      email: this.state.userInputs.email,
+      country: this.state.userInputs.country
     };
     server.register(user, (result, error) => {
       if (error) {
