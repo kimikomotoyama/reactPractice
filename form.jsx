@@ -66,6 +66,9 @@ class Form extends React.Component {
 //         });
 //       });
 //   }
+  setFormState(stateObj, callback) {
+    this.setState(stateObj, callback);
+  }
   
   handleInput(e, type) { 
     let verified;
@@ -109,7 +112,7 @@ class Form extends React.Component {
         <form className="form" data-toggle="validator" role="form">
           <FormGroupComp controlId="id" validationState={this.state.idVerified}>
             <Label name="User Id" />
-            <FormControlComp type="text" onChange={(e)=>this.handleInput(e, "id")} />
+            <FormControlComp type="text" userInputCategory="id" setFormState={this.setFormState}/>
             <FormControl.Feedback />
           </FormGroupComp>
           <FormGroupComp controlId="name" validationState={this.state.nameVerified}>

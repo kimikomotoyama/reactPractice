@@ -30,18 +30,31 @@ class FormControlComp extends React.Component {
         };
         userInput[type] = value;
           
-        this.setState({userInputs: userInput}, () => {
+        this.props.setFormState({userInputs: userInput}, () => {
           console.log(this.state.userInputs);
           verifyObj[verifyKey] = verified ? "success": "error";
           console.log(verifyObj + ": " + verifyObj[verifyKey]);
-          this.setState(verifyObj, () => this.allowDisableSubmitBtn());
+          this.props.setFormState(verifyObj, () => this.props.allowDisableSubmitBtn());
         });
       });
   }
   
+  handleInput(e, type) { 
+    let verified;
+    let value = e.target.value;
+    
+    if (type === "id") {
+      this.verifyEachInput(type, value, "idVerified");
+    } else if (type === "name") {
+      this.verifyEachInput(type, value, "nameVerified");
+    } else if (type === "email") {
+      this.verifyEachInput(type, value, "emailVerified");
+    } 
+  }
+  
   render() {
     return (
-      <FormControl type={this.props.type} onChange={this.props.onChange}/>
+      <FormControl type={this.props.type} onChange={(e) => this.handleInput(e, this.props.userInputCategory)}/>
     );
   }
 }
