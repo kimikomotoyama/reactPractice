@@ -30,60 +30,26 @@ class Form extends React.Component {
     });
   }
   
-  verify(input, type, callback) {
-    if (type === 'id') {
-      server.isIdValid(input, (response) => {
-        callback(response);
-      });
-    } else if (type === 'name') {
-      if (input.length > 2) {
-        callback(true);
-      } else {
-        callback(false);
-      }
-    } else if (type === 'email') {
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input)) {
-        callback(true);
-      } else {
-        callback(false);
-      }
-    }
-  }
-  
-  verifyEachInput(type, value, verifyKey) {
-    this.verify(value, type, (verified) => {
-        const verifyObj = {};
-        const userInput = {
-          ...this.state.userInputs
-        };
-        userInput[type] = value;
-          
-        this.setState({userInputs: userInput}, () => {
-          console.log(this.state.userInputs);
-          verifyObj[verifyKey] = verified ? "success": "error";
-          console.log(verifyObj + ": " + verifyObj[verifyKey]);
-          this.setState(verifyObj, () => this.allowDisableSubmitBtn());
-        });
-      });
-  }
-  
   setFormState(stateObj, callback) {
     this.setState(stateObj, callback);
   }
   
   handleInput(e, type) { 
-    let verified;
+    // let verified;
     let value = e.target.value;
-    
-    if (type === "id") {
-      this.verifyEachInput(type, value, "idVerified");
-    } else if (type === "name") {
-      this.verifyEachInput(type, value, "nameVerified");
-    } else if (type === "email") {
-      this.verifyEachInput(type, value, "emailVerified");
-    } else if (type === "country") {
+    if (type === "country") {
       this.setState({userInputs: {...this.state.userInputs, country: value}});
     }
+    
+    // if (type === "id") {
+    //   this.verifyEachInput(type, value, "idVerified");
+    // } else if (type === "name") {
+    //   this.verifyEachInput(type, value, "nameVerified");
+    // } else if (type === "email") {
+    //   this.verifyEachInput(type, value, "emailVerified");
+    // } else if (type === "country") {
+    //   this.setState({userInputs: {...this.state.userInputs, country: value}});
+    // }
   }
   
   allowDisableSubmitBtn() {
@@ -118,12 +84,12 @@ class Form extends React.Component {
           </FormGroupComp>
           <FormGroupComp controlId="name" validationState={this.state.nameVerified}>
             <Label name="Name" />
-            <FormControlComp type="text" onChange={(e)=>this.handleInput(e, "name")} />
+            <FormControlComp type="text" userInputCategory="name" userInputs={this.state.userInputs} allowDisableSubmitBtn={this.allowDisableSubmitBtn.bind(this)} setFormState={this.setFormState.bind(this)} />
             <FormControl.Feedback />
           </FormGroupComp>
           <FormGroupComp controlId="email" validationState={this.state.emailVerified}>
             <Label name="E-mail" />
-            <FormControlComp type="text" onChange={(e)=>this.handleInput(e, "email")} />
+            <FormControlComp type="text" userInputCategory="email" userInputs={this.state.userInputs} allowDisableSubmitBtn={this.allowDisableSubmitBtn.bind(this)} setFormState={this.setFormState.bind(this)} />
             <FormControl.Feedback />
           </FormGroupComp>
           <div className="form-group has-feedback" >
