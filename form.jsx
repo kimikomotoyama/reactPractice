@@ -34,24 +34,6 @@ class Form extends React.Component {
     this.setState(stateObj, callback);
   }
   
-  handleInput(e, type) { 
-    // let verified;
-    let value = e.target.value;
-    if (type === "country") {
-      this.setState({userInputs: {...this.state.userInputs, country: value}});
-    }
-    
-    // if (type === "id") {
-    //   this.verifyEachInput(type, value, "idVerified");
-    // } else if (type === "name") {
-    //   this.verifyEachInput(type, value, "nameVerified");
-    // } else if (type === "email") {
-    //   this.verifyEachInput(type, value, "emailVerified");
-    // } else if (type === "country") {
-    //   this.setState({userInputs: {...this.state.userInputs, country: value}});
-    // }
-  }
-  
   allowDisableSubmitBtn() {
     const verified = this.state.idVerified === "success" && this.state.nameVerified  === "success" && this.state.emailVerified === "success";
     this.setState({isSubmitDisabled: verified ? false : true});
@@ -94,7 +76,7 @@ class Form extends React.Component {
           </FormGroupComp>
           <div className="form-group has-feedback" >
             <Label name="Country" />
-            <Dropdown name="countries" options={this.state.options} country={this.state.country} handleInput={this.handleInput.bind(this)}/>
+            <Dropdown name="countries" options={this.state.options} country={this.state.country} userInputs={this.state.userInputs} setFormState={this.setFormState.bind(this)} />
           </div>
           <div className="form-group has-feedback" >
             <Button disabled={this.state.isSubmitDisabled ? true : false} name="Submit" handleSubmit={this.handleSubmit.bind(this)}/>
