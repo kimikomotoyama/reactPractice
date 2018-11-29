@@ -11,6 +11,6 @@ class Button extends React.Component {
 }
 
 Button.propTypes = {
-  handleSubmit: PropTypes.element.isRequired,
-  name: PropTypes.element.isRequired
+  handleSubmit: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired
 };

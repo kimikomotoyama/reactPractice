@@ -1,4 +1,4 @@
-/* global server, window, React, ReactDOM, ReactBootstrap Button Dropdown Form */
+/* global server, window, React, ReactDOM, ReactBootstrap Button Dropdown Form PropTypes */
 
 class Label extends React.Component {
   render() {
@@ -7,3 +7,7 @@ class Label extends React.Component {
     );
   }
 }
+
+Label.propTypes = {
+  name: PropTypes.string.isRequired
+};

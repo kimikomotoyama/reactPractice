@@ -1,4 +1,4 @@
-/* global server, window, React, ReactDOM */
+/* global server, window, React, ReactDOM PropTypes */
 
 class Dropdown extends React.Component {
   render() {
@@ -14,3 +14,8 @@ class Dropdown extends React.Component {
     );
   }
 }
+
+Dropdown.propTypes = {
+  handleInput: PropTypes.func.isRequired,
+  options: PropTypes.string.isRequired
+};

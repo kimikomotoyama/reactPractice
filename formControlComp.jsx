@@ -1,4 +1,4 @@
-/* global server, window, React, ReactDOM, ReactBootstrap Button Dropdown Form */
+/* global server, window, React, ReactDOM, ReactBootstrap Button Dropdown Form PropTypes */
 
 class FormControlComp extends React.Component {
   render() {
@@ -7,3 +7,7 @@ class FormControlComp extends React.Component {
     );
   }
 }
+
+FormControlComp.propTypes = {
+  type: PropTypes.string.isRequired
+};
