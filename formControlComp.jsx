@@ -26,12 +26,12 @@ class FormControlComp extends React.Component {
     this.verify(value, type, (verified) => {
         const verifyObj = {};
         const userInput = {
-          ...this.state.userInputs
+          ...this.props.userInputs
         };
         userInput[type] = value;
           
         this.props.setFormState({userInputs: userInput}, () => {
-          console.log(this.state.userInputs);
+          console.log(this.props.userInputs);
           verifyObj[verifyKey] = verified ? "success": "error";
           console.log(verifyObj + ": " + verifyObj[verifyKey]);
           this.props.setFormState(verifyObj, () => this.props.allowDisableSubmitBtn());
