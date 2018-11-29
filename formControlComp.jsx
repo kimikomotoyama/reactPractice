@@ -8,14 +8,6 @@ class FormControlComp extends React.Component {
   }
 }
 
-class Feedback extends React.Component {
-  render() {
-    return (
-      <FormControl.Feedback />
-    );
-  }
-}
-
 FormControlComp.propTypes = {
   type: PropTypes.string.isRequired
 };
